@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ARISS WA Scouts Contact</title>
+  <title>ARISS_WA_Scouts_Contact.html</title>
   <style>
     :root {
       --bg: #0b1220;
@@ -40,9 +40,10 @@
 
     .hero {
       display: grid;
-      grid-template-columns: 1.3fr 1fr;
+      grid-template-columns: minmax(0, 1.35fr) minmax(360px, 0.95fr);
       gap: 20px;
       margin-bottom: 22px;
+      align-items: start;
     }
 
     .card {
@@ -68,8 +69,8 @@
 
     h1 {
       margin: 0;
-      font-size: clamp(2rem, 3.7vw, 3.4rem);
-      line-height: 1.05;
+      font-size: clamp(1.6rem, 2.5vw, 2.4rem);
+      line-height: 1.1;
     }
 
     .sub {
@@ -79,9 +80,9 @@
     }
 
     .hero-grid {
-      margin-top: 22px;
+      margin-top: 16px;
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(2, 1fr);
       gap: 12px;
     }
 
@@ -109,16 +110,23 @@
       padding: 24px;
       display: flex;
       flex-direction: column;
-      justify-content: center;
+      justify-content: flex-start;
     }
 
     .countdown-title {
       color: var(--muted);
       text-transform: uppercase;
-      letter-spacing: 0.12em;
-      font-size: 0.8rem;
+      letter-spacing: 0.08em;
+      font-size: 0.74rem;
       margin-bottom: 10px;
       font-weight: 700;
+      line-height: 1.3;
+    }
+
+    .countdown-subtitle {
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin-bottom: 14px;
     }
 
     .countdown {
@@ -307,7 +315,7 @@
       <div class="card hero-main">
         <div class="eyebrow">Live event dashboard</div>
         <h1>ARISS WA Scouts Contact</h1>
-        <div class="sub">Friday 17 April 2026 · Timing markers for UTC, WA, QLD and Ground Station (AB1OC)</div>
+        <div class="sub">Friday 17 April 2026 · Key timing markers for UTC, AB1OC (USA), WA and QLD</div>
 
         <div style="margin-top:16px; padding:14px 16px; border-radius:16px; background:linear-gradient(180deg, rgba(113,183,255,0.12), rgba(255,255,255,0.02)); border:1px solid var(--border); display:flex; flex-wrap:wrap; gap:16px; align-items:center;">
           <div style="font-weight:800; font-size:1rem;">Ground Station: AB1OC</div>
@@ -315,9 +323,33 @@
           <div style="margin-left:auto; font-size:0.9rem; color:var(--muted);">New Hampshire, USA</div>
         </div>
 
-        <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:18px; margin-bottom:4px;">
-          <button id="fullscreenBtn" style="background:linear-gradient(180deg,#77b9ff,#4f8fe0); color:#08101d; border:none; border-radius:14px; padding:12px 16px; font-weight:800; cursor:pointer; box-shadow:var(--shadow);">Enter Fullscreen</button>
-          <button id="focusNowBtn" style="background:linear-gradient(180deg,#9af3cd,#67d7a6); color:#08101d; border:none; border-radius:14px; padding:12px 16px; font-weight:800; cursor:pointer; box-shadow:var(--shadow);">Jump to Current Marker</button>
+        <div style="margin-top:10px; padding:12px 14px; border-radius:14px; background:linear-gradient(180deg, rgba(142,240,194,0.10), rgba(255,255,255,0.02)); border:1px solid var(--border); display:flex; flex-wrap:wrap; gap:10px; align-items:center;">
+          <div style="font-weight:800;">Astronaut: Jack Hathaway (KJ5NIV)</div>
+          <div style="margin-left:auto; font-size:0.9rem; color:var(--muted);">ISS</div>
+        </div>
+
+        
+
+        <div style="margin-top:10px; padding:12px 14px; border-radius:14px; background:linear-gradient(180deg, rgba(113,183,255,0.10), rgba(255,255,255,0.02)); border:1px solid var(--border); display:flex; flex-wrap:wrap; gap:10px; align-items:center;">
+          <div style="font-weight:800;">Venue: WA Scouts Contact</div>
+          <div style="margin-left:auto; font-size:0.9rem; color:var(--muted);">Western Australia</div>
+        </div>
+
+        <div style="margin-top:10px; padding:12px 14px; border-radius:14px; background:linear-gradient(180deg, rgba(255,209,102,0.10), rgba(255,255,255,0.02)); border:1px solid var(--border); display:flex; flex-wrap:wrap; gap:10px; align-items:center;">
+          <div style="font-weight:800;">Moderator: Stephen Vassallo (VK4SJV)</div>
+          <div style="margin-left:auto; font-size:0.9rem; color:var(--muted);">Mackay QLD, Australia</div>
+        </div>
+
+        
+      </div>
+
+      <div class="card countdown-card">
+        <div class="countdown-title" id="countdownTitle">Countdown to AOS - Acquisition of Signal</div>
+        <div class="countdown" id="mainCountdown">
+          <div class="countdown-box"><span class="num" id="days">0</span><span class="txt">Days</span></div>
+          <div class="countdown-box"><span class="num" id="hours">0</span><span class="txt">Hours</span></div>
+          <div class="countdown-box"><span class="num" id="minutes">0</span><span class="txt">Minutes</span></div>
+          <div class="countdown-box"><span class="num" id="seconds">0</span><span class="txt">Seconds</span></div>
         </div>
 
         <div class="hero-grid">
@@ -326,33 +358,30 @@
             <div class="value" id="aosUtc">10:22:49</div>
           </div>
           <div class="mini">
+            <div class="label">AOS AB1OC</div>
+            <div class="value" id="aosGs">--</div>
+          </div>
+          <div class="mini">
             <div class="label">AOS WA</div>
-            <div class="value" id="aosWa">6:22:49 pm</div>
+            <div class="value" id="aosWa">--</div>
           </div>
           <div class="mini">
             <div class="label">AOS QLD</div>
-            <div class="value" id="aosQld">8:22:49 pm</div>
+            <div class="value" id="aosQld">--</div>
           </div>
         </div>
-      </div>
-
-      <div class="card countdown-card">
-        <div class="countdown-title">Countdown to AOS</div>
-        <div class="countdown" id="mainCountdown">
-          <div class="countdown-box"><span class="num" id="days">0</span><span class="txt">Days</span></div>
-          <div class="countdown-box"><span class="num" id="hours">0</span><span class="txt">Hours</span></div>
-          <div class="countdown-box"><span class="num" id="minutes">0</span><span class="txt">Minutes</span></div>
-          <div class="countdown-box"><span class="num" id="seconds">0</span><span class="txt">Seconds</span></div>
-        </div>
-        <div class="sub" style="margin-top: 14px;">Live until contact start, then flips to elapsed time.</div>
       </div>
     </section>
 
     <section class="card" style="padding:18px 22px; margin-bottom:18px;">
-      <div style="display:grid; grid-template-columns:1.2fr 1fr 1fr; gap:14px; align-items:center;">
+      <div style="display:grid; grid-template-columns:1.2fr 1fr 1fr 1fr; gap:14px; align-items:center;">
         <div>
           <div class="eyebrow" style="margin-bottom:6px;">Live clocks</div>
           <div style="font-size:1.6rem; font-weight:900;">Current time now</div>
+        </div>
+        <div class="mini" style="margin:0;">
+          <div class="label">New Hampshire now</div>
+          <div class="value" id="nowGs">--</div>
         </div>
         <div class="mini" style="margin:0;">
           <div class="label">WA now</div>
@@ -386,11 +415,16 @@
 
     <section class="timeline" id="timeline"></section>
 
-    <div class="footer-note">Reference date: Friday 17 April 2026 · WA = UTC+8 · QLD = UTC+10</div>
+    <div class="footer-note">Reference date: Friday 17 April 2026 · Ground station USA Eastern = UTC-4 (EDT) · WA = UTC+8 · QLD = UTC+10.</div>
   </div>
 
   <script>
     const aosUtc = new Date('2026-04-17T10:22:49Z');
+    const zones = {
+      ground: 'America/New_York',
+      wa: 'Australia/Perth',
+      qld: 'Australia/Brisbane'
+    };
 
     const markers = [
       { label: 'T-60', minutesBefore: 60, note: 'One hour to AOS' },
@@ -438,6 +472,8 @@
 
     function buildTimeline() {
       const container = document.getElementById('timeline');
+      if (!container) return;
+
       container.innerHTML = markers.map((m, index) => `
         <article class="card event-card" id="marker-${index}">
           <div>
@@ -451,15 +487,15 @@
             </div>
             <div class="time-box">
               <div class="zone">AB1OC (USA)</div>
-              <div class="clock">${formatTime(m.time, 'America/New_York')}</div>
+              <div class="clock">${formatTime(m.time, zones.ground)}</div>
             </div>
             <div class="time-box">
               <div class="zone">WA</div>
-              <div class="clock">${formatTime(m.time, 'Australia/Perth')}</div>
+              <div class="clock">${formatTime(m.time, zones.wa)}</div>
             </div>
             <div class="time-box">
               <div class="zone">QLD</div>
-              <div class="clock">${formatTime(m.time, 'Australia/Brisbane')}</div>
+              <div class="clock">${formatTime(m.time, zones.qld)}</div>
             </div>
           </div>
           <div class="status later" id="status-${index}">
@@ -479,14 +515,17 @@
       const minutes = Math.floor((totalSeconds % 3600) / 60);
       const seconds = totalSeconds % 60;
 
-      document.getElementById('days').textContent = days;
-      document.getElementById('hours').textContent = pad(hours);
-      document.getElementById('minutes').textContent = pad(minutes);
-      document.getElementById('seconds').textContent = pad(seconds);
+      const daysEl = document.getElementById('days');
+      const hoursEl = document.getElementById('hours');
+      const minutesEl = document.getElementById('minutes');
+      const secondsEl = document.getElementById('seconds');
+      const titleEl = document.getElementById('countdownTitle');
 
-      document.querySelector('.countdown-title').textContent = diff >= 0
-        ? 'Countdown to AOS'
-        : 'Time since AOS';
+      if (daysEl) daysEl.textContent = days;
+      if (hoursEl) hoursEl.textContent = pad(hours);
+      if (minutesEl) minutesEl.textContent = pad(minutes);
+      if (secondsEl) secondsEl.textContent = pad(seconds);
+      if (titleEl) titleEl.textContent = diff >= 0 ? 'Countdown to AOS - Acquisition of Signal' : 'Time since AOS';
     }
 
     function updateTimeline(now) {
@@ -501,6 +540,8 @@
         const metaEl = document.getElementById(`meta-${index}`);
         const statusEl = document.getElementById(`status-${index}`);
         const cardEl = document.getElementById(`marker-${index}`);
+
+        if (!countEl || !metaEl || !statusEl || !cardEl) return;
 
         statusEl.className = 'status';
         cardEl.classList.remove('done-card', 'soon-card', 'later-card', 'live-card');
@@ -541,6 +582,8 @@
       });
 
       const banner = document.getElementById('phaseBanner');
+      if (!banner) return;
+
       if (now < markers[0].time) {
         banner.textContent = 'Pre-event phase';
         banner.style.background = '#2e1818';
@@ -560,50 +603,39 @@
     }
 
     function updateNowClocks(now) {
-      document.getElementById('nowWa').textContent = formatTime(now, 'Australia/Perth');
-      document.getElementById('nowQld').textContent = formatTime(now, 'Australia/Brisbane');
+      const nowGs = document.getElementById('nowGs');
+      const nowWa = document.getElementById('nowWa');
+      const nowQld = document.getElementById('nowQld');
+
+      if (nowGs) nowGs.textContent = formatTime(now, zones.ground);
+      if (nowWa) nowWa.textContent = formatTime(now, zones.wa);
+      if (nowQld) nowQld.textContent = formatTime(now, zones.qld);
     }
 
-    function setupButtons() {
-      const fullscreenBtn = document.getElementById('fullscreenBtn');
-      const focusNowBtn = document.getElementById('focusNowBtn');
+    function updateAosTimes() {
+      const aosUtcEl = document.getElementById('aosUtc');
+      const aosGsEl = document.getElementById('aosGs');
+      const aosWaEl = document.getElementById('aosWa');
+      const aosQldEl = document.getElementById('aosQld');
 
-      fullscreenBtn.addEventListener('click', async () => {
-        try {
-          if (!document.fullscreenElement) {
-            await document.documentElement.requestFullscreen();
-            fullscreenBtn.textContent = 'Exit Fullscreen';
-          } else {
-            await document.exitFullscreen();
-            fullscreenBtn.textContent = 'Enter Fullscreen';
-          }
-        } catch (e) {
-          alert('Fullscreen was blocked by the browser.');
-        }
-      });
+      if (aosUtcEl) aosUtcEl.textContent = formatUtc(aosUtc);
+      if (aosGsEl) aosGsEl.textContent = formatTime(aosUtc, zones.ground);
+      if (aosWaEl) aosWaEl.textContent = formatTime(aosUtc, zones.wa);
+      if (aosQldEl) aosQldEl.textContent = formatTime(aosUtc, zones.qld);
+    }
 
-      document.addEventListener('fullscreenchange', () => {
-        fullscreenBtn.textContent = document.fullscreenElement ? 'Exit Fullscreen' : 'Enter Fullscreen';
-      });
-
-      focusNowBtn.addEventListener('click', () => {
-        const now = new Date();
-        let currentIndex = 0;
-        for (let i = 0; i < markers.length; i++) {
-          if (now >= markers[i].time) currentIndex = i;
-        }
-        const target = document.getElementById(`marker-${Math.max(currentIndex, 0)}`);
-        if (target) {
-          target.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }
-      });
+    function runSelfTests() {
+      console.assert(formatUtc(new Date('2026-04-17T10:22:49Z')) === '10:22:49', 'UTC formatting failed');
+      console.assert(formatDiff(61000) === '1m 01s', 'formatDiff minute formatting failed');
+      console.assert(markers.length === 7, 'Expected 7 timeline markers');
+      console.assert(markers[0].label === 'T-60', 'First marker should be T-60');
+      console.assert(markers[markers.length - 1].label === 'AOS', 'Last marker should be AOS');
     }
 
     function init() {
       buildTimeline();
-      document.getElementById('aosUtc').textContent = formatUtc(aosUtc);
-      document.getElementById('aosWa').textContent = formatTime(aosUtc, 'Australia/Perth');
-      document.getElementById('aosQld').textContent = formatTime(aosUtc, 'Australia/Brisbane');
+      updateAosTimes();
+      runSelfTests();
 
       function tick() {
         const now = new Date();
@@ -612,7 +644,6 @@
         updateTimeline(now);
       }
 
-      setupButtons();
       tick();
       setInterval(tick, 1000);
     }
